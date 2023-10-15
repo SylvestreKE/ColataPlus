@@ -25,11 +25,16 @@ SECRET_KEY = 'django-insecure-)px3hc-$v3+3^9^vqhmyoku8k65@v!66sw)58$kb51c_dgglu!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL='compte.CustomUser'
+
+## Stripe API keys 
+# SECURITY WARNING: keep the API key used in production secret!
+STRIPE_API_KEY = "sk_test_51NXp1pBlD4rb75R4lLHlpoeHcCoNXgmaWoD8d1MpjLu53a0H3QPlI5PZMgbipsjc1SpKxSeN8ZxxG90cqBocg22g00E3A9dzKa"
+STRIPE_PUBLIC_KEY = "pk_test_51NXp1pBlD4rb75R4lzbBlTP1Uq7fDsmaavk2UKDZkhIhOLuD5Iv6QxxeVABa8Rg6qaQ3JUqSOFFxEeKourQnQmnZ00Ne5tzuA0"
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compte',
+    'boutique',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +88,13 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
